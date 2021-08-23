@@ -74,7 +74,7 @@ table#movies th, table#movies td{
 #notice, #warning{
     background: rosybrown;
     margin: 1em 0;
-    padding: 4px;
+S
 }
 
 from label{
@@ -84,4 +84,12 @@ from label{
     color: maroon;
 }
 
+h3 a {
+    text-decoration: none;
+    font-weight: solid;
+    font-size 100pt;   
+}
 
+tr:hover{
+    background-color: yellow;
+}
