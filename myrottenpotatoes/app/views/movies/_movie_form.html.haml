@@ -1,0 +1,11 @@
+= label :movie, :tittle, 'Title'
+= text_field :movie, 'title'
+
+= label :movie, :description, 'Description'
+= text_field :movie, :description
+
+= label :movie, :rating, 'Rating'
+= select :movie, :rating, Movie.all_ratings
+
+= label :movie, :release_date, 'Releases On'
+= date_select :movie, :release_date
