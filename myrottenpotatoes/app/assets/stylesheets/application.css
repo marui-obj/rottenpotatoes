@@ -54,10 +54,16 @@ h1.title{
 }
 
 table#movies{
-    margin: 10px
+    margin: 10px;
     border-collapse: collapse;
-    width: 100%
+    width: 100%;
     border-bottom: 2px solid block;
+}
+table#reviews{
+    margin: 20px 10px 20px 20px;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    width: 25%;
 }
 
 table#movies th{
@@ -67,14 +73,13 @@ table#movies th{
 }
 
 table#movies th, table#movies td{
-    padding: 4px
+    padding: 4px;
     text-align: left;
 }
 
 #notice, #warning{
     background: rosybrown;
     margin: 1em 0;
-S
 }
 
 from label{
@@ -87,9 +92,9 @@ from label{
 h3 a {
     text-decoration: none;
     font-weight: solid;
-    font-size 100pt;   
+    font-size: 30pt;
 }
 
-tr:hover{
+table#movies tr:hover{
     background-color: yellow;
 }

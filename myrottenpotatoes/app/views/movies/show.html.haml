@@ -11,6 +11,22 @@
 
 %p#description= @movie.description
 
+%h3 Reviews:
+
+%table#reviews
+    %thead
+        %tr
+            %th User
+            %th Score
+            %th Comment
+    %tbody
+    - @movie.reviews.each do |review|
+        %tr
+            %td= review.moviegoer.name
+            %td= review.potatoes
+            %td= review.comments
+
 = link_to 'Back to movie list', movies_path
 = link_to 'Edit info', edit_movie_path(@movie)
+= link_to 'Add Review', new_movie_review_path(@movie)
 = link_to 'Delete', movie_path(@movie), :method => :delete
