@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'sessions#create'
   post 'logout' => 'sessions#destroy'
   get 'auth/failure' => 'sessions#failure'
-  get 'auth/google_oauth2', as: 'login'
+  get 'auth/google_oauth2', :as => 'login'
 end

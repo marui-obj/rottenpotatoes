@@ -3,8 +3,8 @@ class ReviewsController < ApplicationController
     protected
     def has_moviegoer_and_movie
         unless @current_user
-        flash[:warning] = 'You must be logged in to create a review.'
-        redirect_to 'auth/google_oauth2'
+            flash[:warning] = 'You must be logged in to create a review.'
+            redirect_to login_path
         end
 
         unless (@movie = Movie.find_by(:id => params[:movie_id]))

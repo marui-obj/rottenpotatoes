@@ -3,4 +3,4 @@
         %p.welcome Welcome, #{@current_user.name}!
         = link_to 'Log Out', logout_path, :method => :post
     - else
-        %p.login= link_to 'Log in with your Google accout', 'auth/google_oauth2', method: :post
+        %p.login= link_to 'Log in with your Google accout', login_path
