@@ -15,6 +15,11 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
+    # ref by AddMovie.feature
+    when /^the RottenPotatoes home page/
+      '/movies'  
+    when /^the Create New Movie page/
+      '/movies/new' 
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
@@ -36,3 +41,5 @@ module NavigationHelpers
 end
 
 World(NavigationHelpers)
+
+
