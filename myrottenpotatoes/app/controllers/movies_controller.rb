@@ -1,7 +1,25 @@
 class MoviesController < ApplicationController
     before_action :check_for_cancel, :only => [:create, :update]
+    
+    def movies_with_filters
+        @movies = Movie.with_good_reviews(params[:threshold])
+        @movies = @movies.for_kid            if params[:for_kids]
+        @movies = @movies.with_many_fans     if params[:with_many_fans]
+        @movies = @movies.recently_reviewed  if params[:recently_reviewed]
+    end
+
+    def movies_with_filters_2
+        # DRYer version
+        @movies = Movie.with_good_reviews(params[:threshold])
+        %w(for_kid with_many_fans recently_reviewed).each do |filter|
+            @movies = @movies.send(filter) if params[filter]
+        end
+    end
+
     def index
         @movies = Movie.all.sort_by{ |name| name.title}
+        #@movies = Movie.for_kids # for filter kid rating
+        #@movies = Movie.with_good_reviews(1..5)
     end
     
     def show
