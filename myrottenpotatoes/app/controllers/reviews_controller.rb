@@ -1,5 +1,4 @@
 class ReviewsController < ApplicationController
-<<<<<<< HEAD
     before_action :has_moviegoer_and_movie, :only => [:new, :create, :edit, :destroy]
     before_action :set_movie_review, :only => [:edit, :update, :destroy]
     before_action :check_for_cancel, :only => [:create, :update]
