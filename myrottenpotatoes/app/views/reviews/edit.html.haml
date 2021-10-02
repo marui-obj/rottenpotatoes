@@ -6,4 +6,8 @@
   = button_tag "Cancel", :type => 'cancel', :name => 'edit_cancel'
   = submit_tag 'Update Review'
   //= button_tag "Delete", :type => 'submit', :method => :delete
-= link_to "Delete review", movie_review_path(@movie, @review), :method => :delete
+//= link_to "Delete review", movie_review_path(@movie, @review), :method => :delete do
+= form_tag movie_review_path(@movie, @review), :method => :delete do
+  = button_tag "Delete", :type => 'cancel'
+
+  

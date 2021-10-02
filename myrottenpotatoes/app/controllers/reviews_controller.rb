@@ -34,7 +34,7 @@ class ReviewsController < ApplicationController
     def destroy
       @review.destroy
       flash[:notice] = "Movie #{@movie.title} review #{@review.id} deleted."
-      redirect_to movies_path(@movie)
+      redirect_to movie_path(@movie)
     end
 
     private
