@@ -1,0 +1,9 @@
+%h1 Edit Review for #{@movie.title}
+
+= form_tag movie_review_path(@movie, @review), :method => :put do
+  %label How many potatoes:
+  = select_tag 'review[potatoes]', options_for_select(1..5)
+  = button_tag "Cancel", :type => 'cancel', :name => 'edit_cancel'
+  = submit_tag 'Update Review'
+  //= button_tag "Delete", :type => 'submit', :method => :delete
+= link_to "Delete review", movie_review_path(@movie, @review), :method => :delete

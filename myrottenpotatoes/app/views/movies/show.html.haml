@@ -25,6 +25,7 @@
             %td= review.moviegoer.name
             %td= review.potatoes
             %td= review.comments
+            %td= link_to "Edit review", edit_movie_review_path(@movie, review)
 
 = link_to 'Back to movie list', movies_path
 = link_to 'Edit info', edit_movie_path(@movie)
