@@ -1,5 +1,7 @@
+require 'themoviedb'
 class MoviesController < ApplicationController
     before_action :check_for_cancel, :only => [:create, :update]
+    before_action :check_for_tmdb, :only => [:create]
     
     def movies_with_filters
         @movies = Movie.with_good_reviews(params[:threshold])
@@ -18,8 +20,8 @@ class MoviesController < ApplicationController
 
     def index
         @movies = Movie.all.sort_by{ |name| name.title}
-        #@movies = Movie.for_kids # for filter kid rating
-        #@movies = Movie.with_good_reviews(1..5)
+        # @movies = Movie.for_kids # for filter kid rating
+        # @movies = Movie.with_good_reviews(1..5)
     end
     
     def show
@@ -81,13 +83,43 @@ class MoviesController < ApplicationController
         end 
     end
 
+    def check_for_tmdb
+        if params.key?("create_movie")
+            @movie_params
+            @movie = Movie.new
+        end
+    end
+
     def movies_with_filters
         @movies = Movie.with_good_reviews(params[:threshold])
         %w(for_kids with_many_fans recently_reviewed).each do |filter|
             @movies = @movies.send(filter) if params[filter]
         end
     end
-    
+
+    def search_tmdb
+        @search = Tmdb::Search.new
+        @query = params[:search_terms]
+        @search.query(@query)
+        @result = @search.fetch
+        unless @result.empty?
+            redirect_to movies_add_tmdb_path(@query)
+
+        else
+            # hardwire to simulate failure
+            flash[:warning] = "'#{params[:search_terms]}' was not found in TMDb."
+            redirect_to movies_path
+        end
+    end
+
+    def add_tmdb
+        @search = Tmdb::Search.new
+        @search.query(params[:title])
+        @result = @search.fetch
+        # flash[:notice] = "#{@result}"
+        # @result
+    end
+
     private
         def movie_params
             params.require(:movie).permit(:title, :rating, :release_date, :description)
