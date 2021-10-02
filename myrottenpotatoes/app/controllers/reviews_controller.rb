@@ -34,12 +34,12 @@ class ReviewsController < ApplicationController
     def destroy
       @review.destroy
       flash[:notice] = "Movie #{@movie.title} review #{@review.id} deleted."
-      redirect_to movies_path(@movie)
+      redirect_to movie_path(@movie)
     end
 
     private
     def review_params
-        params.require(:review).permit(:potatoes)
+        params.require(:review).permit(:potatoes, :comments)
     end
     
     def set_movie_review
