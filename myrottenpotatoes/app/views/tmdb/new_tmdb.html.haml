@@ -2,14 +2,17 @@
 
 = form_tag movies_path(@id), :method => :post do
     = label :movie, :title, 'Title'
-    = text_field :movie, 'title', :value => @movie["title"]
+    = text_field :movie, 'title', :value => @movie["title"], readonly: true
+
+    = label :movie, :rating, 'Rating'
+    = text_field :movie, :rating, :value => @movie["rating"], readonly: true
 
     = label :movie, :description, 'Description'
-    = text_field :movie, :description, :value => @movie["overview"]
+    = text_field :movie, :description, :value => @movie["overview"], readonly: true
     
-    -#= label :movie, :release_date, 'Releases On'
-    -#= date_select :movie, :release_date, :value => @movie["certification"]
+    = label :movie, :release_date, 'Releases On'
+    = text_field :movie, :release_date, :value => @movie["release_date"], readonly: true
     
-    = submit_tag 'Save Changes'
+    = submit_tag "Save Changes"
 
     = button_tag "Cancel", :type => 'cancel', :name => 'create_cancel'

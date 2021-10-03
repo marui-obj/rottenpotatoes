@@ -41,18 +41,30 @@ class TmdbController < ApplicationController
 
     def find_rating(id)
         detail = Tmdb::Movie.releases(id)
-        detail["countries"].each do |tmp|
-            if tmp["iso_3166_1"] === "US"
-                @rating = tmp["certification"]
+        if detail["countries"].size == 0
+            @rating = ""
+        else
+            detail["countries"].each do |tmp|
+                # return tmp.class
+                if tmp["iso_3166_1"] === "US"
+                    @rating = tmp["certification"]
+                end
             end
-        return @rating
-    end
+        end
+        @rating
     end
 
     # new_tmdb.html.haml
     def new_tmdb
         id = params[:id]
-        @movie = Tmdb::Movie.detail(id)
+        @movie = Hash.new
+        this_movie = Tmdb::Movie.detail(id)
+        @movie["id"] = this_movie["id"]
+        @movie["title"] = this_movie["title"]
+        @movie["overview"] = this_movie["overview"]
+        @movie["release_date"] = this_movie["release_date"]
+        @movie["rating"] = self.find_rating(this_movie["id"])
+        @movie
     end
 
     def create
@@ -65,7 +77,7 @@ class TmdbController < ApplicationController
 
     private
         def movie_params
-            params.require(:movie)
+            params.require(:movie).permit(:description, :rating, :release_date)
         end
 
 end
