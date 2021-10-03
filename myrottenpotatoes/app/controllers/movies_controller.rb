@@ -45,8 +45,9 @@ class MoviesController < ApplicationController
         if @movie.save
             flash[:notice] = "#{@movie.title} was successfully created."
             redirect_to movie_path(@movie)
-        # else
-        #     render 'new'
+        else
+            flash[:notice] = "Movie title can't be blank."
+            redirect_to new_movie_path
         end
     end
 

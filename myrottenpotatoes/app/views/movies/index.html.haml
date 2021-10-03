@@ -15,7 +15,7 @@
 %h1 Search TMDb for a movie
 
 = form_tag :action => 'search_tmdb', :controller=>"tmdb" do
-
-    %label{:for => 'search_terms'} Search Terms
+    
+    %label#Terms{:for => 'search_terms'} Search Terms
     = text_field_tag 'search_terms'
     = submit_tag 'Search TMDb'

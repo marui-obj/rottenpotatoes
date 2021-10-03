@@ -5,5 +5,5 @@
   = select_tag 'review[potatoes]', options_for_select(1..5)
   %label Comment:
   = text_field :review, :comments
-  = button_tag "Cancel", :type => 'cancel', :name => 'create_cancel'
   = submit_tag 'Create Review'
+  = button_tag "Cancel", :type => 'cancel', :name => 'create_cancel'
