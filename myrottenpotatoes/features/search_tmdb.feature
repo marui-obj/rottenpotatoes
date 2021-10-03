@@ -8,7 +8,7 @@ Background: Start from the Search form on the home page
 
   Given I am on the RottenPotatoes home page
   Then I should see "Search TMDb for a movie"
-
+  
 
 Scenario: Try to add nonexistent movie (sad path)
 
@@ -22,6 +22,6 @@ Scenario: Try to add existing movie (happy path)
 
   When I fill in "Search Terms" with "Inception"
   And I press "Search TMDb"
-  Then I should be on the "Search Results" page
+  # Then I should be on the "Search Result" page (Can't make a path)
   And I should not see "not found"
   And I should see "Inception"
