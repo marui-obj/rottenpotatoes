@@ -61,9 +61,9 @@ class TmdbController < ApplicationController
         this_movie = Tmdb::Movie.detail(id)
         @movie["id"] = this_movie["id"]
         @movie["title"] = this_movie["title"]
-        @movie["overview"] = this_movie["overview"]
+        @movie["overview"] = self.check_none(this_movie["overview"])
         @movie["release_date"] = this_movie["release_date"]
-        @movie["rating"] = self.find_rating(this_movie["id"])
+        @movie["rating"] = self.check_none(self.find_rating(this_movie["id"]))
         @movie
     end
 
@@ -73,6 +73,15 @@ class TmdbController < ApplicationController
             flash[:notice] = "#{@movie.title} was successfully created."
             redirect_to movie_path(@movie)
         end
+    end
+
+    def check_none(param)
+        unless param == "" || param.nil?
+            @ret = param
+        else
+            @ret = "None"
+        end
+        @ret
     end
 
     private

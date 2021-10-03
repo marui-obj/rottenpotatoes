@@ -1,12 +1,12 @@
 class Movie < ActiveRecord::Base
     has_many :reviews
     has_many :moviegoers, :through => :reviews
-    def self.all_ratings ; %w[G PG PG-13 R NC-17] ; end
+    def self.all_ratings ; %w[G PG PG-13 R NC-17 None] ; end
     validates :title, :presence => true
     # validates :release_date, :presence => true
     # validate :released_1930_or_later #We can custom validator
-    # validates :rating, :inclusion => {:in => Movie.all_ratings},
-        # :unless => :grandfathered?
+    validates :rating, :inclusion => {:in => Movie.all_ratings},
+        :unless => :grandfathered?
     
     def released_1930_or_later
         errors.add(:release_date, 'must be 1930 or later') if

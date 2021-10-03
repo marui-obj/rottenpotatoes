@@ -2,5 +2,8 @@
     %td= movie_counter #For counter movie table index
     %td= movie.title
     %td= movie.rating
-    %td= movie.release_date.strftime("%B %d, %Y")
+    - unless movie.release_date.nil?
+        %td= movie.release_date.strftime("%B %d, %Y")
+    - else 
+        %td= "None"
     %td= link_to "More about #{movie.title}", movie_path(movie)
