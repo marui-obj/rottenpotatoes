@@ -27,11 +27,14 @@
         %tr
             %td= review.moviegoer.name
             %td= review.potatoes
-            %td= review.comments
-            %td= link_to "Edit review", edit_movie_review_path(@movie, review)
+            %td= review.comments;
+            -# -if @current_user == review.moviegoer
+            -#     %td= link_to "Edit review", edit_movie_review_path(@movie, review)
 
 = link_to 'Back to movie list', movies_path
 = link_to 'Edit info', edit_movie_path(@movie)
-= link_to 'Add Review', new_movie_review_path(@movie)
-= link_to 'Delete', movie_path(@movie), :method => :delete
-= link_to 'Add Review', new_movie_review_path(@movie)
+-@review = Review.find_by(:moviegoer => @current_user, :movie => @movie)
+-if @review
+    = link_to "Edit your review", edit_movie_review_path(@movie, @review)
+-else
+    = link_to 'Add your Review', new_movie_review_path(@movie)

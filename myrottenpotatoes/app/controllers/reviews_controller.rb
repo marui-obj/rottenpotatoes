@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
     protected
     def has_moviegoer_and_movie
         unless @current_user
-            flash[:warning] = 'You must be logged in to create a review.'
+            # flash[:warning] = 'You must be logged in to create a review.'
             redirect_to login_path
         end
 
@@ -20,6 +20,7 @@ class ReviewsController < ApplicationController
     end
     def create
         @current_user.reviews << @movie.reviews.build(review_params)
+        flash[:notice] = "Your review in #{@movie.title} was created."
         redirect_to movie_path(@movie)
     end
  
@@ -28,18 +29,19 @@ class ReviewsController < ApplicationController
 
     def update
       @review.update!(review_params)
+      flash[:notice] = "Your review in #{@movie.title} was updated."
       redirect_to movie_path(@movie)
     end
 
     def destroy
       @review.destroy
-      flash[:notice] = "Movie #{@movie.title} review #{@review.id} deleted."
-      redirect_to movies_path(@movie)
+      flash[:notice] = "Your review in #{@movie.title} was deleted."
+      redirect_to movie_path(@movie)
     end
 
     private
     def review_params
-        params.require(:review).permit(:potatoes)
+        params.require(:review).permit(:potatoes, :comments)
     end
     
     def set_movie_review
