@@ -20,6 +20,7 @@ class ReviewsController < ApplicationController
     end
     def create
         @current_user.reviews << @movie.reviews.build(review_params)
+        flash[:notice] = "Your review in #{@movie.title} was created."
         redirect_to movie_path(@movie)
     end
  
@@ -28,12 +29,13 @@ class ReviewsController < ApplicationController
 
     def update
       @review.update!(review_params)
+      flash[:notice] = "Your review in #{@movie.title} was updated."
       redirect_to movie_path(@movie)
     end
 
     def destroy
       @review.destroy
-      flash[:notice] = "Movie #{@movie.title} review #{@review.id} deleted."
+      flash[:notice] = "Your review in #{@movie.title} was deleted."
       redirect_to movie_path(@movie)
     end
 
