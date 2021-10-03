@@ -9,10 +9,10 @@
                 %th Release Date
                 %th Add
         %tbody
-            - @result.each.with_index do |movie, index|
+            - @movies.each.with_index do |movie, index|
                 %tr
                     %td= index #For counter movie table index
                     %td= movie['title']
                     %td= movie['rating']
                     %td= movie['release_date']
-                    %td= submit_tag 'Add' #:type => 'add', :name => 'create_movie'
+                    %td= link_to 'Add', movies_new_tmdb_path(movie["id"])

@@ -1,0 +1,15 @@
+%h2 Create New Movie
+
+= form_tag movies_path(@id), :method => :post do
+    = label :movie, :title, 'Title'
+    = text_field :movie, 'title', :value => @movie["title"]
+
+    = label :movie, :description, 'Description'
+    = text_field :movie, :description, :value => @movie["overview"]
+
+    -# = label :movie, :release_date, 'Releases On'
+    -# = date_select :movie, :release_date, start_year:1930
+    
+    = submit_tag 'Save Changes'
+
+    = button_tag "Cancel", :type => 'cancel', :name => 'create_cancel'
