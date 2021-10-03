@@ -21,10 +21,32 @@ class TmdbController < ApplicationController
         @search.query(params[:title])
         @result = @search.fetch
         @movies = Array.new
-        @result.each {|t| @movies.append(Tmdb::Movie.detail(t["id"]))}
+        @result.each do |t|
+            movie = Hash.new
+            this_movie = Tmdb::Movie.detail(t["id"])
+            
+            movie["id"] = this_movie["id"]
+            movie["title"] = this_movie["title"]
+            movie["release_date"] = this_movie["release_date"]
+            movie["rating"] = self.find_rating(this_movie["id"])
+            @movies.append(movie)
+
+        end
         @movies
-        # flash[:notice] = "#{@result}"
+        #flash[:notice] = "#{Tmdb::Movie.releases(@movies[0][""])}"
+
+
         # @result
+    end
+
+    def find_rating(id)
+        detail = Tmdb::Movie.releases(id)
+        detail["countries"].each do |tmp|
+            if tmp["iso_3166_1"] === "US"
+                @rating = tmp["certification"]
+            end
+        return @rating
+    end
     end
 
     # new_tmdb.html.haml
