@@ -2,7 +2,7 @@
 
 = form_tag movie_review_path(@movie, @review), :method => :put do
   %label How many potatoes:
-  = select_tag 'review[potatoes]', options_for_select(1..5)
+  = select_tag 'review[potatoes]', options_for_select(1..5, @review["potatoes"]) 
   %label Comment:
   = text_field :review, :comments
   = button_tag "Cancel", :type => 'cancel', :name => 'edit_cancel'
