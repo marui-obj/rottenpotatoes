@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   post 'logout' => 'sessions#destroy'
   get 'auth/failure' => 'sessions#failure'
   get 'auth/google_oauth2', :as => 'login'
+  post '/movies/search_tmdb'
 end
