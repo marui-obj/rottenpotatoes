@@ -8,6 +8,10 @@ class Movie < ActiveRecord::Base
     validates :rating, :inclusion => {:in => Movie.all_ratings},
         :unless => :grandfathered?
     
+    def self.find_in_tmdb(string)
+        
+    end
+    
     def released_1930_or_later
         errors.add(:release_date, 'must be 1930 or later') if
             release_date && release_date < Date.parse('1 Jan 1930')
