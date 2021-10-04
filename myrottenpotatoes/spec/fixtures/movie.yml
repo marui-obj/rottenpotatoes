@@ -1,0 +1,11 @@
+milk_movie:
+  id: 0000001
+  title: Milk
+  rating: R
+  release_date: 2008-11-27
+
+documentary_movie:
+  id: 0000002
+  title: Food, Inc.
+  rating: R
+  release_date: 2008-09-07
