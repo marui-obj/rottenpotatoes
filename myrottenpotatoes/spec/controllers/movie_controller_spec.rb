@@ -5,10 +5,10 @@ describe MoviesController  do
         before :each do
         @movietest2=FactoryGirl.create(:movie)
         end
-        it 'Delete Movie' do
+        it 'delete movie' do
           expect{delete:destroy,params: {id: @movietest2.id}}.to change(Movie,:count).by(-1)
         end
-        it 'Home page'do
+        it 'home page'do
           delete:destroy,params:{id: @movietest2.id}
           expect(response).to redirect_to(:action=>'index')
         end
@@ -17,9 +17,9 @@ describe MoviesController  do
 
       describe 'add movie' do
         before :each do
-         @movietest={movie:{:title=>'a',:rating=>'G',:release_date=>'01-04-2000',:description=>'eiei'}}
+         @movietest={movie:{:title=>'My title',:rating=>'NR',:release_date=>'04-10-2000',:description=>'My description'}}
         end
-        it 'New Movie' do
+        it 'new movie' do
           expect{post:create,params:@movietest}.to change(Movie,:count).by(1)
         end
       end
@@ -30,7 +30,7 @@ describe MoviesController  do
         end
         it 'edit movie' do
           get :edit,params:{id: @movietest2.id}
-          expect(assigns(:movie).description)==('eiei')
+          expect(assigns(:movie).description)==('My description')
         end
         it 'detail page'do
           post :show,params:{id: @movietest2.id}
