@@ -9,10 +9,9 @@
         #main
             =render :partial=>'sessions/login'
             %h3= link_to "RottenPotatoes", movies_path
+            
             - if flash[:notice]
                 #notice.message= flash[:notice]
             - elsif flash[:warning]
                 #warning.message= flash[:warning]
             = yield
-
-        

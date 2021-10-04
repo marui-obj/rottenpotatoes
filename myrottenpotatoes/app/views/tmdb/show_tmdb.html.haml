@@ -9,10 +9,12 @@
                 %th Release Date
                 %th Add
         %tbody
-            - @movies.each.with_index do |movie, index|
+            - @movies.each.with_index(1) do |movie, index|
                 %tr
                     %td= index #For counter movie table index
                     %td= movie['title']
                     %td= movie['rating']
                     %td= movie['release_date']
                     %td= link_to 'Add', movies_new_tmdb_path(movie["id"])
+
+= link_to 'Back to movie list', movies_path

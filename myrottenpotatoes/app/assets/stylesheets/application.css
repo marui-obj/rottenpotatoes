@@ -27,11 +27,12 @@ div#main{
     padding: 0 20px 20px;
 }
 
-a{
+a{  
     background: transparent;
     color: #000080;
     text-decoration: underline;
     font-weight: bold;
+    margin-left: 10px;
 }
 
 h1 {
@@ -41,12 +42,13 @@ h1 {
     display: block;
     width: 100%;
     border-bottom: 1px solid DarkSlateGrey;
+    margin-left: 10px;
 }
 
 h1.title{
     margin: 0 0 1em;
     padding: 10px;
-    background-color: orange;
+    background-color: red;
     color: white;
     border-bottom: 4px solid gold;
     font-size: 2em;
@@ -78,8 +80,10 @@ table#movies th, table#movies td{
 }
 
 #notice, #warning{
-    background: rosybrown;
+    background: coral;
     margin: 1em 0;
+    font-size: large;
+    color: Black;
 }
 
 from label{
@@ -92,9 +96,25 @@ from label{
 h3 a {
     text-decoration: none;
     font-weight: solid;
-    font-size: 30pt;
+    font-size: 30pt;    
 }
 
 table#movies tr:hover{
-    background-color: yellow;
+    background-color: palegoldenrod;
+}
+
+#login {
+    text-align: right;
+}
+
+#Link a {
+    margin-left: 16px;
+}
+
+#Terms {
+    margin-left: 10px;
+}
+
+h3 img{
+    display: inline-block;
 }
